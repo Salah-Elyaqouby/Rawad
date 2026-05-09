@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #1A1E2E;
+  --primary: #1B9E8E;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EBF7F6;
+  --secondary-foreground: #1A1E2E;
+  --accent: #17877A;
+  --accent-foreground: #FFFFFF;
+  --muted: #F4F8F8;
+  --muted-foreground: #6B7280;
+  --card: #FFFFFF;
+  --card-foreground: #1A1E2E;
+  --border: #E2EAE9;
+  --input: #E2EAE9;
+  --ring: #1B9E8E;
+  --radius: 1rem;
+  --font-sans: var(--font-cairo), 'Cairo', sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+}
+
+@layer components {
+  .fade-in-up {
+    animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+
+  .service-tile {
+    @apply rounded-2xl px-6 py-5 text-lg font-bold cursor-pointer transition-all duration-300 text-center;
+    background-color: var(--secondary);
+    color: var(--foreground);
+    border: 2px solid transparent;
+  }
+
+  .service-tile:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .service-tile.active {
+    background-color: var(--foreground);
+    color: #FFFFFF;
+  }
+
+  .teal-section {
+    background-color: var(--primary);
+  }
+
+  .floating-el {
+    animation: floatY 4s ease-in-out infinite;
+  }
+
+  .floating-el-slow {
+    animation: floatY 6s ease-in-out infinite reverse;
+  }
+
+  .whatsapp-btn {
+    @apply fixed bottom-8 left-6 z-50 flex items-center justify-center rounded-full shadow-2xl transition-transform duration-300 hover:scale-110;
+    width: 56px;
+    height: 56px;
+    background-color: #25D366;
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-animate {
+  animation: slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Decorative elements */
+.deco-spiral {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--primary);
+  border-radius: 50%;
+  opacity: 0.35;
+  position: relative;
+}
+
+.deco-spiral::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.deco-dots {
+  display: grid;
+  grid-template-columns: repeat(3, 8px);
+  gap: 5px;
+}
+
+.deco-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  opacity: 0.4;
+}
